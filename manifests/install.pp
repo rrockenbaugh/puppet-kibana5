@@ -12,6 +12,7 @@ class kibana5::install (
   $package_repo_version = $kibana5::package_repo_version,
   $package_repo_proxy   = $kibana5::package_repo_proxy,
   $version              = $kibana5::version,
+  $rpm_iteration        = $kibana5::rpm_iteration,
 ) inherits kibana5 {
 
   if ($manage_repo) {
@@ -27,6 +28,10 @@ class kibana5::install (
           descr    => "Kibana repository for ${package_repo_version} packages",
           proxy    => $package_repo_proxy,
           before   => Package['kibana5'],
+        }
+         package { 'kibana5':
+          ensure => "${version}-${rpm_iteration}",
+          name   => 'kibana',
         }
       }
 
@@ -45,16 +50,15 @@ class kibana5::install (
           },
           before   => Package['kibana5'],
         }
+        package { 'kibana5':
+          ensure => $version,
+          name   => 'kibana',
+        }
       }
 
       default: {
         fail("${::operatingsystem} not supported")
       }
     }
-  }
-
-  package { 'kibana5':
-    ensure => $version,
-    name   => 'kibana',
   }
 }
