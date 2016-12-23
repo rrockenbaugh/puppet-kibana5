@@ -64,7 +64,7 @@ class kibana5::install (
     }
   }
   file { $pid_file:
-    owner  => $service_name,
-    group  => $service_name,
+    owner => $service_name,
+    group => $service_name,
   }
 }
