@@ -37,6 +37,7 @@ describe 'kibana5::install', :type => 'class' do
         should_not contain_apt__source('kibana-5.x')
         should contain_package('kibana5').with(
           'ensure' => '5.0.0')
+      end
     end
     context 'redhat' do
       let(:facts) {{
@@ -53,4 +54,3 @@ describe 'kibana5::install', :type => 'class' do
   end
 end
 
-end
