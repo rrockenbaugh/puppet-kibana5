@@ -13,6 +13,8 @@ class kibana5::install (
   $package_repo_proxy   = $kibana5::package_repo_proxy,
   $version              = $kibana5::version,
   $rpm_iteration        = $kibana5::rpm_iteration,
+  $pid_file             = $kibana5::pid_file,
+  $service_name         = $kibana5::service_name,
 ) inherits kibana5 {
 
   if ($manage_repo) {
@@ -60,5 +62,9 @@ class kibana5::install (
         fail("${::operatingsystem} not supported")
       }
     }
+  }
+  file { $pid_file:
+    owner     => $service_name,
+    group     => $service_name,
   }
 }
