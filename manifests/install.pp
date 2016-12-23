@@ -29,7 +29,7 @@ class kibana5::install (
           proxy    => $package_repo_proxy,
           before   => Package['kibana5'],
         }
-         package { 'kibana5':
+        package { 'kibana5':
           ensure => "${version}-${rpm_iteration}",
           name   => 'kibana',
         }
