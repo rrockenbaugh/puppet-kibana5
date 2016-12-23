@@ -42,6 +42,7 @@ describe 'kibana5::install', :type => 'class' do
       let(:facts) {{
         :osfamily => 'RedHat'
       }}
+      let(:params) {{ :manage_repo => false }}
       it do
         should compile.with_all_deps
         should_not contain_yumrepo('kibana-5.x')
