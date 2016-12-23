@@ -54,6 +54,7 @@ class kibana5 (
   $config_dir           = '/etc/kibana',
   $install_dir          = '/usr/share/kibana',
   $bin_dir              = '/usr/share/kibana/bin',
+  $pid_file             = '/var/run/kibana.pid',
 ) {
 
   validate_bool($manage_repo)
