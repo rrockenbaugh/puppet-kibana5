@@ -42,6 +42,7 @@
 #
 class kibana5 (
   $version              = '5.0.0',
+  $rpm_iteration        = '1',
   $manage_repo          = true,
   $package_repo_version = '5.x',
   $package_repo_proxy   = undef,
