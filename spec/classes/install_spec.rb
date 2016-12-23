@@ -11,7 +11,7 @@ describe 'kibana5::install', :type => 'class' do
         'baseurl' => /packages\/5.x\//,
         'descr'   => /for 5.x/)
       should contain_package('kibana5').with(
-        'ensure' => '5.0.0')
+        'ensure' => '5.0.0-1')
     end
   end
 
