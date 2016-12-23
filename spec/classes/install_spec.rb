@@ -28,17 +28,28 @@ describe 'kibana5::install', :type => 'class' do
   end
 
   context 'manage_repo => false' do
-    let(:facts) { UBUNTU_FACTS }
-    let(:params) {{ :manage_repo => false }}
-    it do
-      should compile.with_all_deps
-      should_not contain_class('apt')
-      should_not contain_yumrepo('kibana-5.x')
-      should_not contain_apt__source('kibana-5.x')
-
-      should contain_package('kibana5').with(
-        'ensure' => '5.0.0-1')
+    context 'debian' do
+      let(:facts) { UBUNTU_FACTS }
+      let(:params) {{ :manage_repo => false }}
+      it do
+        should compile.with_all_deps
+        should_not contain_class('apt')
+        should_not contain_apt__source('kibana-5.x')
+        should contain_package('kibana5').with(
+          'ensure' => '5.0.0')
+    end
+    context 'redhat' do
+      let(:facts) {{
+        :osfamily => 'RedHat'
+      }}
+      it do
+        should compile.with_all_deps
+        should_not contain_yumrepo('kibana-5.x')
+        should contain_package('kibana5').with(
+          'ensure' => '5.0.0-1')
+      end
     end
   end
+end
 
 end
