@@ -35,10 +35,10 @@ describe 'kibana5::install', :type => 'class' do
         should compile.with_all_deps
         should_not contain_class('apt')
         should_not contain_apt__source('kibana-5.x')
-        should contain_package('kibana5').with(
-          'ensure' => '5.0.0')
+        should contain_package('kibana5')
       end
     end
+
     context 'redhat' do
       let(:facts) {{
         :osfamily => 'RedHat'
@@ -47,8 +47,7 @@ describe 'kibana5::install', :type => 'class' do
       it do
         should compile.with_all_deps
         should_not contain_yumrepo('kibana-5.x')
-        should contain_package('kibana5').with(
-          'ensure' => '5.0.0-1')
+        should contain_package('kibana5')
       end
     end
   end

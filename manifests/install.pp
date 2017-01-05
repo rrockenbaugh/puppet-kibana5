@@ -63,6 +63,12 @@ class kibana5::install (
       }
     }
   }
+  else {
+    package { 'kibana5':
+      ensure => present,
+      name   => 'kibana',
+    }
+  }
   file { $pid_file:
     owner => $service_name,
     group => $service_name,
