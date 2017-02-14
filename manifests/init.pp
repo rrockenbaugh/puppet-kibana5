@@ -82,7 +82,7 @@ class kibana5 (
   Class['kibana5::config'] ~>
   Class['kibana5::service']
 
-  Kibana4::Plugin {
+  Kibana5::Plugin {
     require => Class['kibana5::install']
   }
 
